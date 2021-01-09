@@ -8,18 +8,25 @@ exports.create = (req, res) => {
 // Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
     Orders.getAll((err, data) => {
-        if (err)
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while retrieving customers."
-          });
-        else res.send(data);
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving customers."
       });
-    };
+    else res.send(data);
+  });
+};
 
 // Find a single Customer with a customerId
-exports.findOne = (req, res) => {
-
+exports.findById = (req, res) => {
+    Orders.findById(req.params.orderId,(err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving customers."
+      });
+    else res.send(data);
+  });
 };
 
 // Update a Customer identified by the customerId in the request

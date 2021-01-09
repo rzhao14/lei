@@ -7,14 +7,14 @@ module.exports = app => {
   // Retrieve all items
   app.get("/orderItem", OrderItem.findAll);
 
-  // Retrieve a single item with customerId
-  app.get("/orderItem/:customerId", OrderItem.findOne);
+  // Retrieve a single item with orderId
+  app.get("/orderItem/:orderId", OrderItem.findById);
 
-  // Update a item with customerId
-  app.put("/orderItem/:customerId", OrderItem.update);
+  // Update a item with orderId
+  app.put("/orderItem/:orderId", OrderItem.update);
 
-  // Delete a item with customerId
-  app.delete("/orderItem/:customerId", OrderItem.delete);
+  // Delete a item with orderId
+  app.delete("/orderItem/:orderId", OrderItem.delete);
 
   // Create a new item
   app.delete("/orderItem", OrderItem.deleteAll);

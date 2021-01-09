@@ -24,7 +24,7 @@ OrderItem.create = (newOrderItem, result) => {
 };
 
 OrderItem.findById = (order_id, result) => {
-  sql.query(`SELECT * FROM order_item WHERE order_id = ${order_id}`, (err, res) => {
+  sql.query(`SELECT * FROM order_item INNER JOIN item ON order_item.buyer_id=item.buyer_id WHERE order_id = ${order_id}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -32,8 +32,8 @@ OrderItem.findById = (order_id, result) => {
     }
 
     if (res.length) {
-      console.log("found order_item: ", res[0]);
-      result(null, res[0]);
+      console.log("found order_item: ", res);
+      result(null, res);
       return;
     }
 
@@ -41,6 +41,7 @@ OrderItem.findById = (order_id, result) => {
     result({ kind: "not_found" }, null);
   });
 };
+
 
 OrderItem.getAll = result => {
   sql.query("SELECT * FROM order_item", (err, res) => {
