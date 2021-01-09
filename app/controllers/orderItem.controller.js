@@ -27,6 +27,15 @@ exports.findById = (req, res) => {
       });
     else res.send(data);
   });
+};exports.findByName = (req, res) => {
+    OrderItem.findByName(req.params.orderName, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving customers."
+      });
+    else res.send(data);
+  });
 };
 
 // Update a Customer identified by the customerId in the request

@@ -40,7 +40,7 @@ Orders.findById = (order_id, result) => {
 };
 
 Orders.getAll = result => {
-  sql.query("SELECT * FROM orders", (err, res) => {
+  sql.query("SELECT * FROM orders ORDER BY order_date DESC LIMIT 20", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

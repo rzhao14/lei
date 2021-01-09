@@ -9,6 +9,7 @@ module.exports = app => {
 
   // Retrieve a single item with orderId
   app.get("/orderItem/:orderId", OrderItem.findById);
+  app.get("/orderItem/name/:orderName", OrderItem.findByName);
 
   // Update a item with orderId
   app.put("/orderItem/:orderId", OrderItem.update);

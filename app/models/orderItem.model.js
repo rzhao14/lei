@@ -41,6 +41,24 @@ OrderItem.findById = (order_id, result) => {
     result({ kind: "not_found" }, null);
   });
 };
+OrderItem.findByName = (order_name, result) => {
+  sql.query(`SELECT * FROM order_item INNER JOIN item ON order_item.buyer_id=item.buyer_id WHERE order_name = '${order_name}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found order_item: ", res);
+      result(null, res);
+      return;
+    }
+
+    // not found OrderItem with the id
+    result({ kind: "not_found" }, null);
+  });
+};
 
 
 OrderItem.getAll = result => {
