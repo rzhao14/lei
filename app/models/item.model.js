@@ -56,14 +56,14 @@ Item.getAll = result => {
       return;
     }
 
-    console.log("items: ", res);
+    console.log("item: ", res);
     result(null, res);
   });
 };
 
 Item.updateById = (id, item, result) => {
   sql.query(
-    "UPDATE items SET buyer_id = ?, oem_id = ?, factory_id = ?, x = ?, y = ? , z = ?, description = ?, image_url = ?, priceC = ?, priceU = ? last_update = ? WHERE buyer_id = ?",
+    "UPDATE item SET buyer_id = ?, oem_id = ?, factory_id = ?, x = ?, y = ? , z = ?, description = ?, image_url = ?, priceC = ?, priceU = ? last_update = ? WHERE buyer_id = ?",
     [ item.buyer_id, item.oem_id, item.factory_id, item.x, item.y, item.z, item.description, item.image_url, item.priceC, item.priceU, item.last_update, buyer_id ],
     (err, res) => {
       if (err) {
@@ -111,7 +111,7 @@ Item.removeAll = result => {
       return;
     }
 
-    console.log(`deleted ${res.affectedRows} items`);
+    console.log(`deleted ${res.affectedRows} item`);
     result(null, res);
   });
 };

@@ -1,4 +1,4 @@
-const Item = require("../models/item.model.js");
+const Orders = require("../models/orders.model.js");
 
 // Create and Save a new Customer
 exports.create = (req, res) => {
@@ -7,7 +7,7 @@ exports.create = (req, res) => {
 
 // Retrieve all Customers from the database.
 exports.findAll = (req, res) => {
-    Item.getAll((err, data) => {
+    Orders.getAll((err, data) => {
         if (err)
           res.status(500).send({
             message:
