@@ -38,6 +38,7 @@ Item.findById = (buyer_id, result) => {
     if (res.length) {
       console.log("found item: ", res[0]);
       result(null, res[0]);
+      return;
     }
 
     // not found Item with the id

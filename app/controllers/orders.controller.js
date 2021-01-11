@@ -4,7 +4,6 @@ const Item = require("../models/Item.model.js");
 
 // Create and Save a new Customer
 exports.create = (req, res) => {
-
   let order = { order_name:req.body.name, order_date: new Date()}
   Orders.create(order, (err, data) => {
     if (err)
@@ -13,29 +12,28 @@ exports.create = (req, res) => {
           err.message || "Some error occurred while retrieving customers."
       });
   });
-
   let count = 0;
   req.body.list.map(e=>{
     let orderItem = {order_id:null, order_name: req.body.name, buyer_id: e}
-//    Item.findById(e,(err, data) => {
-//        if (err){
-//            console.log(err)
-//        }
-//        else {
-//            orderItem.priceC = data.priceCI
-//            orderItem.priceU = data.priceUI
-//        }
-//      });
+
+    Item.findById(e,(err, data) => {
+        if (err){
+            console.log(err)
+        }
+        else {
+            orderItem.priceC = data.priceCI
+            orderItem.priceU = data.priceUI
+        }
         OrderItem.create(orderItem, (err, data) => {
-          count++;
-          if (err) console.log(err)
-          if(count === req.body.list.length){
-            res.status(200).send([])
-          }
-        });
+            count++;
+            if (err) console.log(err)
+            if(count === req.body.list.length){
+              res.status(200).send([])
+            }
+          });
+      });
+
   })
-
-
 };
 
 // Retrieve all Customers from the database.
