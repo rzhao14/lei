@@ -42,7 +42,7 @@ OrderItem.findById = (order_id, result) => {
   });
 };
 OrderItem.findByName = (order_name, result) => {
-  sql.query(`SELECT * FROM order_item INNER JOIN item ON order_item.buyer_id=item.buyer_id WHERE order_name = '${order_name}'`, (err, res) => {
+  sql.query(`SELECT * FROM item right JOIN order_item ON order_item.buyer_id=item.buyer_id WHERE order_name = '${order_name}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

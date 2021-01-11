@@ -27,7 +27,8 @@ exports.findById = (req, res) => {
       });
     else res.send(data);
   });
-};exports.findByName = (req, res) => {
+};
+exports.findByName = (req, res) => {
     OrderItem.findByName(req.params.orderName, (err, data) => {
     if (err)
       res.status(500).send({

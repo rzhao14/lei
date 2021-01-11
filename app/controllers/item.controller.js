@@ -19,7 +19,14 @@ exports.findAll = (req, res) => {
 
 // Find a single Customer with a customerId
 exports.findOne = (req, res) => {
-
+    Item.findById(req.params.buyerId, (err, data) => {
+        if (err)
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while retrieving customers."
+          });
+        else res.send(data);
+      });
 };
 
 // Update a Customer identified by the customerId in the request

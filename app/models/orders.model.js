@@ -38,6 +38,24 @@ Orders.findById = (order_id, result) => {
     result({ kind: "not_found" }, null);
   });
 };
+Orders.findByName = (order_name, result) => {
+  sql.query(`SELECT * FROM orders WHERE order_name = '${order_name}'`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found orders: ", res);
+      result(null, res);
+      return;
+    }
+
+    // not found Orders with the id
+    result({ kind: "not_found" }, null);
+  });
+};
 
 Orders.getAll = result => {
   sql.query("SELECT * FROM orders ORDER BY order_date DESC LIMIT 20", (err, res) => {
@@ -49,6 +67,19 @@ Orders.getAll = result => {
 
     console.log("orders: ", res);
     result(null, res);
+  });
+};
+
+Orders.findTotalCount = result => {
+  sql.query("SELECT COUNT(*) FROM orders", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("orders: ", res[0]);
+    result(null, res[0]);
   });
 };
 

@@ -8,13 +8,13 @@ module.exports = app => {
   app.get("/item", Item.findAll);
 
   // Retrieve a single item with customerId
-  app.get("/item/:customerId", Item.findOne);
+  app.get("/item/:buyerId", Item.findOne);
 
-  // Update a item with customerId
-  app.put("/item/:customerId", Item.update);
+  // Update a item with buyerId
+  app.put("/item/:buyerId", Item.update);
 
-  // Delete a item with customerId
-  app.delete("/item/:customerId", Item.delete);
+  // Delete a item with buyerId
+  app.delete("/item/:buyerId", Item.delete);
 
   // Create a new item
   app.delete("/item", Item.deleteAll);

@@ -6,9 +6,11 @@ module.exports = app => {
 
   // Retrieve all items
   app.get("/orders", Orders.findAll);
+  app.get("/ordersTotal", Orders.findTotalCount);
 
   // Retrieve a single item with customerId
   app.get("/orders/:orderId", Orders.findById);
+  app.get("/orders/name/:orderName", Orders.findByName);
 
   // Update a item with customerId
   app.put("/orders/:orderId", Orders.update);

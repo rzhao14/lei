@@ -12,8 +12,6 @@ const Item = function(item) {
   this.priceU = item.priceU;
   this.priceU = item.priceU;
   this.last_update = item.last_update;
-
-
 };
 
 Item.create = (newItem, result) => {
@@ -30,7 +28,7 @@ Item.create = (newItem, result) => {
 };
 
 Item.findById = (buyer_id, result) => {
-  sql.query(`SELECT * FROM item WHERE buyer_id = ${buyer_id}`, (err, res) => {
+  sql.query(`SELECT * FROM item WHERE buyer_id = '${buyer_id}'`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -40,7 +38,6 @@ Item.findById = (buyer_id, result) => {
     if (res.length) {
       console.log("found item: ", res[0]);
       result(null, res[0]);
-      return;
     }
 
     // not found Item with the id
