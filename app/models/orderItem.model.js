@@ -5,9 +5,10 @@ const OrderItem = function(orderItem) {
   this.order_id = orderItem.order_id;
   this.order_name = orderItem.order_name;
   this.buyer_id = orderItem.buyer_id;
-  this.priceC = orderItem.priceC;
-  this.priceU = orderItem.priceU;
+  this.Box_brand = orderItem.Box_brand;
+  this.price = orderItem.price;
   this.quantity = orderItem.quantity;
+  this.comments = orderItem.comments;
 };
 
 OrderItem.create = (newOrderItem, result) => {

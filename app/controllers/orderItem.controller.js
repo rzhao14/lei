@@ -42,6 +42,15 @@ exports.findByName = (req, res) => {
 // Update a Customer identified by the customerId in the request
 exports.update = (req, res) => {
 
+    let orderItem = {   order_id : req.body.order_id,
+                        order_name:req.body.order_name,
+                        buyerId:req.body.buyer_id,
+                        priceC: req.body.priceC,
+                        priceU: req.body.priceU,
+                        quantity: req.body.quantity
+                    }
+    OrderItem.update(orderItem, )
+
 };
 
 // Delete a Customer with the specified customerId in the request

@@ -7,10 +7,15 @@ const Item = function(item) {
   this.factory_id = item.factory_id;
   this.x = item.x;
   this.y = item.y;
+  this.z = item.z;
+  this.unit = item.unit;
   this.description = item.description;
-  this.priceC = item.priceC;
-  this.priceU = item.priceU;
-  this.priceU = item.priceU;
+  this.image_url = item.image_url;
+  this.priceCI = item.priceCI;
+  this.priceUI = item.priceUI;
+  this.hs = item.hs;
+  this.vnit = item.vnit;
+  this.commentI = item.commentI;
   this.last_update = item.last_update;
 };
 

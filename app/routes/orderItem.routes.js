@@ -3,6 +3,7 @@ module.exports = app => {
 
   // Create a new item
   app.post("/orderItem", OrderItem.create);
+  app.post("/orderItem/update", OrderItem.update);
 
   // Retrieve all items
   app.get("/orderItem", OrderItem.findAll);
