@@ -1,4 +1,6 @@
 const OrderItem = require("../models/orderItem.model.js");
+const Item = require("../models/item.model.js");
+const Orders = require("../models/orders.model.js");
 
 // Create and Save a new Customer
 exports.create = (req, res) => {
@@ -42,14 +44,58 @@ exports.findByName = (req, res) => {
 // Update a Customer identified by the customerId in the request
 exports.update = (req, res) => {
 
+console.log(req.body)
     let orderItem = {   order_id : req.body.order_id,
                         order_name:req.body.order_name,
-                        buyerId:req.body.buyer_id,
-                        priceC: req.body.priceC,
-                        priceU: req.body.priceU,
-                        quantity: req.body.quantity
+                        buyer_id:req.body.buyer_id,
+                        box_brand: req.body.box_brand,
+                        price: req.body.price,
+                        quantity: req.body.quantity,
+                        comment: req.body.comment
                     }
-    OrderItem.update(orderItem, )
+    OrderItem.updateById(req.body.order_id, req.body.buyer_id, orderItem, (err, data) => {
+       if (err)
+         res.status(500).send({
+           message:
+             err.message || "Some error occurred while udpating order item."
+         });
+     });
+
+    let item = {    buyer_id : req.body.buyer_id,
+                    oem_id:req.body.oem_id,
+                    factory_id:req.body.factory_id,
+                    x: req.body.x,
+                    y: req.body.y,
+                    z: req.body.z,
+                    unit: req.body.unit,
+                    description: req.body.description,
+                    image_url: req.body.image_url,
+                    priceCI: req.body.priceCI,
+                    priceUI: req.body.priceUI,
+                    hs: req.body.hs,
+                    vunit: req.body.vunit,
+                    commentI: req.body.commentI,
+                    last_update: new Date().getTime()
+                }
+    Item.updateById(req.body.buyer_id, item, (err, data) => {
+       if (err)
+         res.status(500).send({
+           message:
+             err.message || "Some error occurred while retrieving customers."
+         });
+     });
+    let orders = {  order_id : req.body.order_id,
+                    order_name:req.body.order_name,
+                    order_date:new Date().getTime()
+                }
+    Orders.updateById(req.body.order_id, orders, (err, data) => {
+       if (err)
+         res.status(500).send({
+           message:
+             err.message || "Some error occurred while retrieving customers."
+         });
+        else res.send(data);
+     });
 
 };
 

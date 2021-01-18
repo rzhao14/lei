@@ -21,8 +21,7 @@ exports.create = (req, res) => {
             console.log(err)
         }
         else {
-            orderItem.priceC = data.priceCI
-            orderItem.priceU = data.priceUI
+            orderItem.price = data.priceUI
         }
         OrderItem.create(orderItem, (err, data) => {
             count++;

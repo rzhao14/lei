@@ -8,7 +8,7 @@ const OrderItem = function(orderItem) {
   this.Box_brand = orderItem.Box_brand;
   this.price = orderItem.price;
   this.quantity = orderItem.quantity;
-  this.comments = orderItem.comments;
+  this.comment = orderItem.comment;
 };
 
 OrderItem.create = (newOrderItem, result) => {
@@ -75,10 +75,10 @@ OrderItem.getAll = result => {
   });
 };
 
-OrderItem.updateById = (order_id, order_item, result) => {
+OrderItem.updateById = (order_id, buyer_id, order_item, result) => {
   sql.query(
-    "UPDATE order_item SET order_id = ?, order_name = ?, buyer_id = ?, priceC = ?, priceU = ?, quantity = ? WHERE order_id = ?",
-    [ order_item.order_id , order_item.order_name , order_item.buyer_id , order_item.priceC , order_item.priceU , order_item.quantity , order_id ],
+    "UPDATE order_item SET order_id = ?, order_name = ?, buyer_id = ?, box_brand = ?, price = ?, quantity = ?, comment = ? WHERE order_id = ? AND buyer_id = ?",
+    [ order_item.order_id , order_item.order_name , order_item.buyer_id , order_item.box_brand , order_item.price , order_item.quantity , order_item.comment, order_id, buyer_id ],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -92,8 +92,8 @@ OrderItem.updateById = (order_id, order_item, result) => {
         return;
       }
 
-      console.log("updated order_item: ", { id: id, ...order_item });
-      result(null, { id: id, ...order_item });
+      console.log("updated order_item: ", { id: order_id, ...order_item });
+      result(null, { id: order_id, ...order_item });
     }
   );
 };

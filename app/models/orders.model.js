@@ -85,7 +85,7 @@ Orders.findTotalCount = result => {
 
 Orders.updateById = (order_id, orders, result) => {
   sql.query(
-    "UPDATE orders SET order_id = ?, order_name = ? order_date = ? WHERE order_id = ?",
+    "UPDATE orders SET order_id = ?, order_name = ?, order_date = ? WHERE order_id = ?",
     [ orders.order_id, orders.order_name, orders.order_date, order_id ],
     (err, res) => {
       if (err) {
@@ -100,8 +100,8 @@ Orders.updateById = (order_id, orders, result) => {
         return;
       }
 
-      console.log("updated orders: ", { id: id, ...orders });
-      result(null, { id: id, ...orders });
+      console.log("updated orders: ", { id: order_id, ...orders });
+      result(null, { id: order_id, ...orders });
     }
   );
 };

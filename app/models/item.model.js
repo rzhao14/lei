@@ -64,10 +64,10 @@ Item.getAll = result => {
   });
 };
 
-Item.updateById = (id, item, result) => {
+Item.updateById = (buyer_id, item, result) => {
   sql.query(
-    "UPDATE item SET buyer_id = ?, oem_id = ?, factory_id = ?, x = ?, y = ? , z = ?, description = ?, image_url = ?, priceC = ?, priceU = ? last_update = ? WHERE buyer_id = ?",
-    [ item.buyer_id, item.oem_id, item.factory_id, item.x, item.y, item.z, item.description, item.image_url, item.priceC, item.priceU, item.last_update, buyer_id ],
+    "UPDATE item SET buyer_id = ?, oem_id = ?, factory_id = ?, x = ?, y = ? , z = ?, description = ?, image_url = ?, priceCI = ?, priceUI = ?, hs = ? , vunit = ?, commentI = ?, last_update = ? WHERE buyer_id = ?",
+    [ item.buyer_id, item.oem_id, item.factory_id, item.x, item.y, item.z, item.description, item.image_url, item.priceCI, item.priceUI, item.hs, item.vunit, item.commentI, item.last_update, buyer_id ],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -81,8 +81,8 @@ Item.updateById = (id, item, result) => {
         return;
       }
 
-      console.log("updated item: ", { id: id, ...item });
-      result(null, { id: id, ...item });
+      console.log("updated item: ", { id: buyer_id, ...item });
+      result(null, { id: buyer_id, ...item });
     }
   );
 };
