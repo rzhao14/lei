@@ -4,7 +4,7 @@ const Item = require("../models/Item.model.js");
 
 // Create and Save a new Customer
 exports.create = (req, res) => {
-  let order = { order_name:req.body.name, order_date: new Date()}
+  let order = { order_name:req.body.name, order_date:  Date.now()}
   Orders.create(order, (err, data) => {
     if (err)
       res.status(500).send({
