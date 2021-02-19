@@ -83,10 +83,10 @@ Orders.findTotalCount = result => {
   });
 };
 
-Orders.updateById = (order_id, orders, result) => {
+Orders.updateByName = (order_name, orders, result) => {
   sql.query(
-    "UPDATE orders SET order_id = ?, order_name = ?, order_date = ? WHERE order_id = ?",
-    [ orders.order_id, orders.order_name, orders.order_date, order_id ],
+    "UPDATE orders SET order_id = ?, order_name = ?, order_date = ? WHERE order_name = ?",
+    [ orders.order_id, orders.order_name, orders.order_date, order_name ],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -100,8 +100,8 @@ Orders.updateById = (order_id, orders, result) => {
         return;
       }
 
-      console.log("updated orders: ", { id: order_id, ...orders });
-      result(null, { id: order_id, ...orders });
+      console.log("updated orders: ", { name: order_name, ...orders });
+      result(null, { id: order_name, ...orders });
     }
   );
 };

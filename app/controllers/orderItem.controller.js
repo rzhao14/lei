@@ -44,7 +44,6 @@ exports.findByName = (req, res) => {
 // Update a Customer identified by the customerId in the request
 exports.update = (req, res) => {
 
-console.log(req.body)
     let orderItem = {   order_id : req.body.order_id,
                         order_name:req.body.order_name,
                         buyer_id:req.body.buyer_id,
@@ -53,12 +52,13 @@ console.log(req.body)
                         quantity: req.body.quantity,
                         comment: req.body.comment
                     }
-    OrderItem.updateById(req.body.order_id, req.body.buyer_id, orderItem, (err, data) => {
-       if (err)
+                    console.log(req.body)
+    OrderItem.updateByName(req.body.order_name, req.body.buyer_id, orderItem, (err, data) => {
+       if (err){
          res.status(500).send({
            message:
              err.message || "Some error occurred while udpating order item."
-         });
+         });}
      });
 
     let item = {    buyer_id : req.body.buyer_id,
@@ -78,22 +78,23 @@ console.log(req.body)
                     last_update: new Date().getTime()
                 }
     Item.updateById(req.body.buyer_id, item, (err, data) => {
-       if (err)
+       if (err){
          res.status(500).send({
            message:
              err.message || "Some error occurred while retrieving customers."
-         });
+         });}
      });
+
     let orders = {  order_id : req.body.order_id,
                     order_name:req.body.order_name,
                     order_date:new Date().getTime()
                 }
-    Orders.updateById(req.body.order_id, orders, (err, data) => {
-       if (err)
+    Orders.updateByName(req.body.order_name, orders, (err, data) => {
+       if (err){
          res.status(500).send({
            message:
              err.message || "Some error occurred while retrieving customers."
-         });
+         });}
         else res.send(data);
      });
 
